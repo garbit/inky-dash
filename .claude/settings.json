@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:apps.apple.com)",
+      "WebFetch(domain:nightingaledvs.com)",
+      "WebFetch(domain:www.macstories.net)",
+      "Bash(curl -s http://inky/api/status)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('last_render:', d.get\\('last_render'\\)\\); print\\('layout:', d.get\\('current_layout'\\) or d.get\\('layout'\\)\\); print\\('modules:', {k: v.get\\('ok'\\) for k,v in \\(d.get\\('modules'\\) or {}\\).items\\(\\)}\\)\")",
+      "Bash(gh api *)"
+    ]
+  }
+}

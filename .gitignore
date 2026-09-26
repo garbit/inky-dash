@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Per-developer Claude Code settings (.claude/settings.json is shared and committed)
+.claude/settings.local.json
+
+# Runtime state (never commit)
+config.json
+data/
+output/
+.deploy.env
+*.png
+!frontend/public/*.png
+!docs/*.png

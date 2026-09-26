@@ -1,0 +1,865 @@
+:root {
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #c33;
+  --bg: #f4f3ef;
+  --card: #ffffff;
+  --border: #ddd8d0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 0;
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 4px;
+}
+
+h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 18px 0 10px;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h4 {
+  margin: 10px 0 4px;
+  font-size: 14px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.preview-card {
+  position: sticky;
+  top: 16px;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-card {
+    position: static;
+  }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.preview {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 0 0 14px;
+  padding: 10px 14px 14px;
+  /* Browsers give fieldsets min-inline-size: min-content, so one wide row of
+     controls pushes the whole fieldset outside its card instead of letting the
+     row shrink. Opt out and let normal block sizing apply. */
+  min-inline-size: 0;
+}
+
+legend {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 6px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  margin: 8px 0;
+  color: var(--muted);
+}
+
+label input,
+label select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 7px 9px;
+  font-size: 14px;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+}
+
+.row label {
+  flex: 1;
+}
+
+.calendar-list {
+  margin: 8px 0;
+}
+
+.calendar-list label.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.calendar-list label.checkbox input {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+}
+
+.calendar-list button {
+  margin-top: 6px;
+  font-size: 13px;
+  padding: 5px 10px;
+}
+
+button {
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+button.primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.module-status {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+.module-status li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.ok {
+  background: #2e7d4f;
+}
+
+.dot.err {
+  background: var(--accent);
+}
+
+.dot.pending {
+  background: var(--border);
+}
+
+.trend-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.trend-chart .grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.trend-chart .axis {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.trend-chart .crosshair {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.trend-readout {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 16px;
+}
+
+.save-row {
+  margin-top: 4px;
+}
+
+.location-search {
+  position: relative;
+}
+
+.location-spinner {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  font-size: 12px;
+}
+
+.location-results {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin: 2px 0 0;
+  padding: 4px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.location-results li {
+  padding: 7px 10px;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.location-results li.active {
+  background: var(--bg);
+}
+
+.location-results li.muted {
+  cursor: default;
+}
+
+.location-coords {
+  margin-left: auto;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ---- layout editor ---- */
+
+.layout-library ul {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.layout-library li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout-library li:last-child {
+  border-bottom: none;
+}
+
+.layout-library li.editing {
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+
+.layout-library .layout-name {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.layout-library .badge {
+  margin-left: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.layout-canvas {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--card);
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px);
+  touch-action: none;
+  user-select: none;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+.layout-region {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--accent) 10%, var(--card));
+  border: 1px solid var(--accent);
+  cursor: grab;
+}
+
+.layout-region.blank {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--muted);
+}
+
+.layout-region.selected {
+  border-width: 2px;
+  z-index: 2;
+}
+
+.layout-region.drawing {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-style: dotted;
+  pointer-events: none;
+}
+
+.region-label {
+  font-size: 12px;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.layout-region.blank .region-label {
+  color: var(--muted);
+}
+
+.region-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  z-index: 3;
+}
+
+.editor-toolbar {
+  min-height: 32px;
+  margin-top: 6px;
+}
+
+.module-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.module-chip {
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--ink);
+  padding: 3px 12px;
+  font-size: 13px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.module-chip.placed {
+  opacity: 0.45;
+}
+
+.module-chip.drag-ghost {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  transform: translate(-50%, -120%);
+  background: color-mix(in srgb, var(--accent) 12%, var(--card));
+  opacity: 0.9;
+}
+
+.config-inspector {
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+.config-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.config-tab {
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--muted);
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.config-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.inspector-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.inspector-tab {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--muted);
+  padding: 3px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.inspector-tab.active {
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+}
+
+.inspector-body {
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  padding-top: 6px;
+}
+
+.preview-frame {
+  position: relative;
+}
+
+.preview-frame.loading .preview {
+  opacity: 0.55;
+  transition: opacity 0.2s ease 0.2s;
+}
+
+.preview-caption {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+
+/* ---- playlist ---- */
+
+.playlist {
+  list-style: none;
+  counter-reset: screen;
+  margin: 10px 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.playlist li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* very narrow columns drop the controls to a second line */
+  gap: 6px;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+/* Compact controls: a row carries a select, a dwell field and three buttons,
+   and the config column is narrow — full-size buttons push the card wider. */
+.playlist button {
+  padding: 4px 7px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.playlist li::before {
+  counter-increment: screen;
+  content: counter(screen);
+  width: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.playlist li:last-child {
+  border-bottom: none;
+}
+
+.playlist li.editing {
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+
+.playlist li.skipped select,
+.playlist li.skipped .playlist-minutes {
+  opacity: 0.5;
+}
+
+.playlist select {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 8px;
+  font-size: 14px;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+}
+
+.playlist .playlist-minutes {
+  margin: 0;
+  width: 54px;
+  flex: none;
+}
+
+.playlist .playlist-minutes input {
+  margin-top: 0;
+  padding: 5px 6px;
+}
+
+.playlist .checkbox {
+  margin: 0;
+}
+
+.playlist .checkbox input {
+  display: block;
+  width: auto;
+  margin: 0;
+}
+
+.playlist-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.playlist-toggle input {
+  width: auto;
+  margin: 0;
+}
+
+.config-tab .dot {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.preview-tag {
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* --- photos panel --------------------------------------------------------- */
+
+.photos-panel {
+  margin: 8px 0;
+}
+
+.connect-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.connect-row {
+  margin: 0;
+  gap: 8px;
+}
+
+.connect-row .spacer {
+  flex: 1;
+}
+
+.connect-row strong {
+  font-size: 14px;
+}
+
+.paste-bridge input {
+  flex: 1;
+  min-width: 220px;
+}
+
+.photo-actions {
+  align-items: center;
+}
+
+/* A file input styled as a button: the native control looks out of place next
+   to the rest of the row. */
+.upload-button {
+  display: inline-block;
+  flex: 0 0 auto;
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+}
+
+.upload-button input {
+  display: none;
+}
+
+.picking {
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
+  margin: 10px 0;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.photo-thumb {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The whole thumbnail opens the framing editor, so it is a button rather than a
+   plain image — stripped back to look like one. */
+.photo-open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+/* Marks a photo whose crop was positioned by hand rather than left centred. */
+.photo-badge {
+  position: absolute;
+  left: 2px;
+  bottom: 2px;
+  padding: 0 4px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--card);
+  background: rgb(0 0 0 / 0.55);
+}
+
+.framer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(0 0 0 / 0.5);
+}
+
+.framer {
+  width: min(760px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 16px 20px 20px;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.3);
+}
+
+.framer-head .spacer {
+  flex: 1;
+}
+
+/* The base label rule stacks its input underneath and stretches it; a toggle in
+   a toolbar wants the box beside the words instead. */
+.framer-head .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.framer-head .checkbox input {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* The crop window: the photos panel's own aspect ratio, set inline from the
+   layout, so what is inside it is what reaches the display. */
+.framer-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.framer-frame.draggable {
+  cursor: grab;
+  touch-action: none;
+}
+
+.framer-frame.dragging {
+  cursor: grabbing;
+}
+
+.framer-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+}
+
+.framer-render {
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.photo-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  font-size: 14px;
+  border-radius: 10px;
+  opacity: 0.75;
+}
+
+.photo-remove:hover {
+  opacity: 1;
+}
+
+.handoff {
+  border-left: 3px solid var(--accent);
+}
+
+.handoff input {
+  flex: 1;
+  min-width: 240px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
